@@ -1,6 +1,10 @@
 #files containing personal informatin:
 authentication.yaml
 
+# misc
+temp.py
+icount/
+
 #vscode settings
 .vscode/
 
