@@ -10,7 +10,8 @@ import yaml
 import json
 
 class Icount:
-    """A class that represents main Icount element
+    """
+    A class that represents main Icount element
     
     """
     BASE_URL='https://api.icount.co.il/api/v3.php/'
