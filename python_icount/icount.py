@@ -1,7 +1,6 @@
 """
 File: icount.py
 --------------
-Home to the main icount service object.
 
 """
 
@@ -11,9 +10,8 @@ import yaml
 import json
 
 class Icount:
-    """
-    Icount    
-
+    """A class that represents main Icount element
+    
     """
     BASE_URL='https://api.icount.co.il/api/v3.php/'
 
@@ -41,21 +39,23 @@ class Icount:
             user (str, optional): icount username. Defaults to settings['user'].
             password (str, optional): icount password. Defaults to settings['password'].
             cid (str, optional): icount company id. Defaults to settings['cid'].
-        """    
-
-        for key, value in kwargs.items():
-            print ("%s == %s" %(key, value))
-
-        
+        """            
         # merge kwargs with param dictionary, and get sid from response
-        self.sid=requests.post(
+        self.json_response=requests.post(
             f'{Icount.BASE_URL}auth/login',
             {
                 'cid':cid,
                 'user':user,
                 'pass':password,
                 **kwargs,
-            }).json()['sid']
+            }).json()
+
+
+        try:
+            self.sid = self.json_response['sid']
+        except KeyError:
+            pass
+
 
     @classmethod
     def send_request(cls, method,endpoint, params):
